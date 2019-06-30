@@ -12,7 +12,7 @@ module Caramel::Styles
         while attr_scanner.scan(Rule::RE_ATTRS)
           attrs[attr_scanner[1]] = attr_scanner[2]
         end
-        self << Rule.new(selector_text, //, attrs)
+        self << Rule.new(selector_text, regex_for_selector(selector_text), attrs)
       end
     end
   end

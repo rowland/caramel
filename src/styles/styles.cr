@@ -1,6 +1,7 @@
 require "xml"
 require "./rule"
 require "./rule_set"
+require "./selectors"
 
 module Caramel::Styles
   extend self
@@ -18,7 +19,9 @@ module Caramel::Styles
     rule_sets.each do |rule_set|
       rule_set.each do |rule|
         rule.attrs.each do |key, value|
-          node.attributes[key] = value if rule.selector == node.name
+          if rule.selector_re =~ node.path
+            node.attributes[key] = value
+          end
         end
       end
     end
