@@ -1,0 +1,4 @@
+page { size: A4; }
+page#first p { font: Ariel; }
+page#second p { font: Times-Roman; }
+footer { margin-top: 1cm; }

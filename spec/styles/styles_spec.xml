@@ -1,0 +1,12 @@
+<doc>
+  <styles src="styles_spec.css" />
+  <page id="first">
+    <title>This is the Title</title>
+    <p>Here is some text.</p>
+    <footer>Here is some footer text.</footer>
+  </page>
+  <page id="second">
+    <p>Here is some more text.</p>
+    <footer margin-top="2cm">Here is some other footer text.</footer>
+  </page>
+</doc>

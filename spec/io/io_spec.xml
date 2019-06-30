@@ -1,0 +1,7 @@
+<doc>
+  <page>
+    <title>This is the title</title>
+    <styles src="io_spec.css" />
+    <styles src="http://www.example.com/io_spec.css" />
+  </page>
+</doc>

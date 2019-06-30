@@ -1,0 +1,20 @@
+name: caramel
+version: 0.1.0
+
+authors:
+  - Brent Rowland <brent.rowland@ttiltd.com>
+
+description: "Caramel is a Crystal Markup Language for creating PDF documents."
+
+crystal: 0.29.0
+
+license: MIT
+
+development_dependencies:
+  webmock:
+    github: manastech/webmock.cr
+    branch: master
+
+targets:
+  caramel:
+    main: src/cli/cli.cr
