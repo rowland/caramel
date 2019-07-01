@@ -37,3 +37,15 @@ struct XML::Node
     end
   end
 end
+
+struct XML::Attributes
+  def to_h
+    self.reduce(Hash(String, String).new) { |m, attr| m[attr.name] = attr.text; m }
+  end
+
+  def merge!(other : Hash)
+    other.each do |key, value|
+      self[key] = value
+    end
+  end
+end

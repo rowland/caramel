@@ -12,10 +12,7 @@ module Caramel::Styles
   end
 
   private def apply_node(node : XML::Node, rule_sets : Array(RuleSet))
-    overrides = node.attributes.reduce(Hash(String, String).new) do |m, attr|
-      m[attr.name] = attr.text
-      m
-    end
+    overrides = node.attributes.to_h
     rule_sets.each do |rule_set|
       rule_set.each do |rule|
         rule.attrs.each do |key, value|
@@ -25,9 +22,7 @@ module Caramel::Styles
         end
       end
     end
-    overrides.each do |key, value|
-      node.attributes[key] = value
-    end
+    node.attributes.merge!(overrides)
   end
 
   private def apply_children(node : XML::Node, rule_sets : Array(RuleSet))
