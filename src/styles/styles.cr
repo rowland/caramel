@@ -32,7 +32,14 @@ module Caramel::Styles
     node.children.each do |child|
       if child.type == XML::Type::ELEMENT_NODE
         if child.name == "styles"
-          rule_set.add_rules(child.text)
+          text = String.build do |s|
+            child.children.each do |n|
+              if n.type == XML::Type::TEXT_NODE || n.type == XML::Type::COMMENT_NODE
+                s << n.text
+              end
+            end
+          end
+          rule_set.add_rules(text)
           child.unlink
         else
           apply(child, rule_sets)

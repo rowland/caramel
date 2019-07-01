@@ -1,5 +1,14 @@
 <doc>
   <styles src="styles_spec.css" />
+  <styles>
+    #first { margin: 1in; }
+    <!--
+      page#first footer {
+        padding: 3pt;
+      }
+    -->
+    #second { margin: 2in; }
+  </styles>
   <page id="first">
     <title>This is the Title</title>
     <p>Here is some text.</p>
