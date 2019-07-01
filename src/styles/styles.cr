@@ -38,6 +38,7 @@ module Caramel::Styles
       if child.type == XML::Type::ELEMENT_NODE
         if child.name == "styles"
           rule_set.add_rules(child.text)
+          child.unlink
         else
           apply(child, rule_sets)
         end
