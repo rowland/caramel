@@ -23,11 +23,7 @@ module Caramel::Styles
     end
     rule_sets.each do |rule_set|
       rule_set.each do |rule|
-        rule.attrs.each do |key, value|
-          if rule.selector_re =~ node.path
-            node.attributes[key] = value
-          end
-        end
+        node.attributes.merge!(rule.attrs) if rule.match?(node.path)
       end
     end
     node.attributes.merge!(overrides)

@@ -9,5 +9,9 @@ module Caramel::Styles
 
     def initialize(@selector, @selector_re, @attrs)
     end
+
+    def match?(path : String) : Bool
+      !!(self.selector_re =~ path)
+    end
   end
 end
