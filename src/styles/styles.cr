@@ -11,9 +11,9 @@ module Caramel::Styles
             custom_tags = {} of String => Hash(String, String))
     # apply node
     overrides = node.attributes.to_h
-    if base_attrs = custom_tags[node.name]?
-      custom_tag = base_attrs.delete("tag")
-      node.attributes.merge!(base_attrs)
+    if custom_attrs = custom_tags[node.name]?
+      custom_tag = custom_attrs["tag"]?
+      node.attributes.merge!(custom_attrs.reject("tag"))
     end
     rule_sets.each do |rule_set|
       rule_set.each do |rule|
@@ -54,8 +54,6 @@ module Caramel::Styles
     rule_sets.pop
 
     # apply custom tag
-    if custom_tag
-      node.name = custom_tag
-    end
+    node.name = custom_tag if custom_tag
   end
 end
