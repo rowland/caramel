@@ -9,16 +9,10 @@ module Caramel::Styles
   def apply(node : XML::Node,
             rule_sets = [] of RuleSet,
             custom_tags = {} of String => Hash(String, String))
-    apply_node(node, rule_sets, custom_tags)
-    apply_children(node, rule_sets, custom_tags)
-    apply_custom_tag(node, custom_tags)
-  end
-
-  private def apply_node(node : XML::Node,
-                         rule_sets : Array(RuleSet),
-                         custom_tags : Hash(String, Hash(String, String)))
+    # apply node
     overrides = node.attributes.to_h
     if base_attrs = custom_tags[node.name]?
+      custom_tag = base_attrs.delete("tag")
       node.attributes.merge!(base_attrs)
     end
     rule_sets.each do |rule_set|
@@ -27,11 +21,8 @@ module Caramel::Styles
       end
     end
     node.attributes.merge!(overrides)
-  end
 
-  private def apply_children(node : XML::Node,
-                             rule_sets : Array(RuleSet),
-                             custom_tags : Hash(String, Hash(String, String)))
+    # apply children
     rule_set = RuleSet.new
     rule_sets.push(rule_set)
     custom_tags = custom_tags.dup
@@ -61,11 +52,10 @@ module Caramel::Styles
     end
 
     rule_sets.pop
-  end
-end
 
-private def apply_custom_tag(node : XML::Node, custom_tags : Hash(String, Hash(String, String)))
-  if node["tag"]?
-    node.name = node.delete("tag")
+    # apply custom tag
+    if custom_tag
+      node.name = custom_tag
+    end
   end
 end
