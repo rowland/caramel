@@ -28,7 +28,7 @@ module Caramel::Styles
     custom_tags = custom_tags.dup
 
     node.children.each do |child|
-      if child.type == XML::Type::ELEMENT_NODE
+      if child.element?
         if child.name == "define"
           base_attrs = child.attributes.to_h
           if id = base_attrs.delete("id")
@@ -38,7 +38,7 @@ module Caramel::Styles
         elsif child.name == "styles"
           text = String.build do |s|
             child.children.each do |n|
-              if n.type == XML::Type::TEXT_NODE || n.type == XML::Type::COMMENT_NODE
+              if n.text? || n.comment?
                 s << n.text
               end
             end

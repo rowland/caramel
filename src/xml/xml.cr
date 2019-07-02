@@ -12,7 +12,7 @@ struct XML::Node
   end
 
   def selector_tag : String
-    if self.type == XML::Type::ELEMENT_NODE
+    if self.element?
       String.build do |s|
         s << self.name
         if id = self["id"]?
