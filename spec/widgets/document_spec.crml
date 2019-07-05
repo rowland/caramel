@@ -1,0 +1,13 @@
+<crml>
+  <styles>
+  </styles>
+  <page>
+    <p>Some text</p>
+  </page>
+  <page>
+    <div>
+      <widget>
+      </widget>
+    </div>
+  </page>
+</crml>
