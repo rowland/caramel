@@ -5,7 +5,7 @@ require "./widget"
 
 module Caramel::Widgets
   class Paragraph < Widget
-    def initialize(parent : Container | Nil = nil, node : XML::Node | Nil = nil)
+    def initialize(parent : Container, node : XML::Node)
       super
       if n = node
         n["class"] = String.build do |s|

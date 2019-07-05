@@ -4,9 +4,9 @@ require "./factory"
 
 module Caramel::Widgets
   class Styles
-    def initialize(parent : Container | Nil = nil, node : XML::Node | Nil = nil)
+    def initialize(parent : Container, node : XML::Node)
     end
   end
 
-  register("styles") { Styles.new }
+  register("styles") { |parent, node| Styles.new(parent, node) }
 end

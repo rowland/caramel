@@ -16,7 +16,7 @@ module Caramel::Widgets
       @@registry[tag] = block
     end
 
-    def self.make(tag : String, parent : Container | Nil, node : XML::Node | Nil) : Widget | Styles
+    def self.make(tag : String, parent : Container, node : XML::Node) : Widget | Styles
       if maker = @@registry[tag]?
         maker.call(parent, node)
       else
@@ -35,7 +35,7 @@ module Caramel::Widgets
     Factory.register(tag, &block)
   end
 
-  def make(tag : String, parent : Container | Nil, node : XML::Node | Nil) : Widget | Styles
+  def make(tag : String, parent : Container, node : XML::Node) : Widget | Styles
     Factory.make(tag, parent, node)
   end
 end
