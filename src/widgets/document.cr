@@ -8,12 +8,20 @@ module Caramel::Widgets
 
     getter pages : Array(Page)
 
+    def initialize
+      @node = XML.parse("<crml />")
+    end
+
     def initialize(filename : String)
       File.open(filename) { |f| initialize(f) }
     end
 
     def initialize(io : ::IO)
-      initialize(XML.parse(io).first_element_child)
+      if node = XML.parse(io).first_element_child
+        initialize(node)
+      else
+        raise "Invalid document"
+      end
     end
 
     def initialize(node : XML::Node)

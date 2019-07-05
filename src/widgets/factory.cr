@@ -4,7 +4,7 @@ require "./container"
 require "./styles"
 
 module Caramel::Widgets
-  alias WidgetMaker = Proc(Container | Nil, XML::Node | Nil, Widget | Styles)
+  alias WidgetMaker = Proc(Container, XML::Node, Widget | Styles)
 
   class Factory
     class UnregisteredWidget < Exception

@@ -8,7 +8,7 @@ module Caramel::Widgets
 
     getter widgets : Array(Widget)
 
-    def initialize(parent : Container | Nil = nil, node : XML::Node | Nil = nil)
+    def initialize(parent : Container, node : XML::Node)
       super
       if node
         node.children.each do |n|
