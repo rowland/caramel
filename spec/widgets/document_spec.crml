@@ -1,5 +1,7 @@
 <crml>
   <styles>
+    p.basic-latin { font: Courier; }
+    p.cyrillic { font: Times; }
   </styles>
   <page>
     <p>Some text</p>
