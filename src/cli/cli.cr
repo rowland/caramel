@@ -1,4 +1,4 @@
-require "crystal-pdf"
+require "pdf"
 require "option_parser"
 require "xml"
 require "./../caramel"

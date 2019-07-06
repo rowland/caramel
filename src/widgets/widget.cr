@@ -1,4 +1,4 @@
-require "crystal-pdf"
+require "pdf"
 require "xml"
 require "./container"
 require "./factory"
