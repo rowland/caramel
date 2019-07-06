@@ -1,3 +1,4 @@
+require "crystal-pdf"
 require "xml"
 require "./container"
 require "./factory"
@@ -9,6 +10,9 @@ module Caramel::Widgets
     def initialize(parent : Container, node : XML::Node)
       @node = node
       parent << self unless parent.nil?
+    end
+
+    def draw(wr : PDF::Writer)
     end
   end
 

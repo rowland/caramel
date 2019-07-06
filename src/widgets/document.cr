@@ -38,6 +38,12 @@ module Caramel::Widgets
         super
       end
     end
+
+    def draw(wr : PDF::Writer)
+      wr.open
+      pages.each { |p| p.draw(wr) }
+      wr.close
+    end
   end
 
   # register("crml") { |parent, node| Document.new(parent, node) }

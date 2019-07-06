@@ -11,7 +11,7 @@ module Caramel::Widgets
     def initialize(parent : Container, node : XML::Node)
       super
       node.children.each do |n|
-        make(n.name, self, n) if n.element?
+        Caramel::Widgets.make(n.name, self, n) if n.element?
       end
     end
 
@@ -20,6 +20,11 @@ module Caramel::Widgets
       when Widget
         widgets << object
       end
+    end
+
+    def draw(wr : PDF::Writer)
+      widgets.each { |w| w.draw(wr) }
+      super
     end
   end
 
