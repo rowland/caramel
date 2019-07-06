@@ -2,6 +2,7 @@ require "xml"
 require "./rule"
 require "./rule_set"
 require "./selectors"
+require "../xml"
 
 module Caramel::Styles
   extend self

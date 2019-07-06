@@ -1,6 +1,7 @@
 require "xml"
 require "./container"
 require "./page"
+require "../styles"
 
 module Caramel::Widgets
   class Document < Container
