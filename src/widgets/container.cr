@@ -10,10 +10,8 @@ module Caramel::Widgets
 
     def initialize(parent : Container, node : XML::Node)
       super
-      if node
-        node.children.each do |n|
-          make(n.name, self, n) if n.element?
-        end
+      node.children.each do |n|
+        make(n.name, self, n) if n.element?
       end
     end
 
