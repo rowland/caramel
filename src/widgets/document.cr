@@ -13,7 +13,7 @@ module Caramel::Widgets
     getter pages : Array(Page)
 
     def initialize
-      @node = XML.parse("<crml />")
+      initialize(XML.parse("<crml />"))
     end
 
     def initialize(@filename : String)
