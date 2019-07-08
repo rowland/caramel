@@ -2,16 +2,6 @@ require "./spec_helper"
 
 module Caramel::Styles
   describe Caramel::Styles do
-    describe "#apply" do
-      doc = File.open(File.join(__DIR__, "styles_spec.xml")) { |f| XML.parse(f) }
-      Caramel::IO.expand(doc, __DIR__, "styles", "src")
-
-      it "should apply styles" do
-        Caramel::Styles.apply(doc)
-        # puts doc
-      end
-    end
-
     context "selectors" do
       describe "#regex_string_for_selector" do
         it "should match tag" do

@@ -1,11 +1,14 @@
 require "xml"
 require "./container"
+require "../io"
 require "./page"
 require "../styles"
 
 module Caramel::Widgets
   class Document < Container
-    @pages = Array(Page).new
+    @custom_tags = {} of String => Hash(String, String)
+    @filename = ""
+    @pages = [] of Page
 
     getter pages : Array(Page)
 
@@ -13,21 +16,27 @@ module Caramel::Widgets
       @node = XML.parse("<crml />")
     end
 
-    def initialize(filename : String)
-      File.open(filename) { |f| initialize(f) }
+    def initialize(@filename : String)
+      File.open(@filename) { |f| initialize(f) }
     end
 
     def initialize(io : ::IO)
-      if node = XML.parse(io).first_element_child
-        initialize(node)
-      else
-        raise "Invalid document"
-      end
+      initialize(XML.parse(io))
     end
 
     def initialize(node : XML::Node)
+      unless node.element?
+        unless node = node.first_element_child
+          raise "Invalid document"
+        end
+      end
+      Caramel::IO.expand(node, File.dirname(@filename), "styles", "src")
       super(self, node)
-      Caramel::Styles.apply(node)
+      apply_styles
+    end
+
+    def apply_styles
+      pages.each { |p| p.apply_styles([rule_set]) }
     end
 
     def <<(object)

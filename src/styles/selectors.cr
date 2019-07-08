@@ -1,4 +1,6 @@
 module Caramel::Styles
+  extend self
+
   def regex_for_selector(selector : String) : Regex
     Regex.new(regex_string_for_selector(selector))
   end

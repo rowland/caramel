@@ -1,17 +1,23 @@
 require "xml"
 require "./factory"
+require "../styles"
 require "./widget"
 
 module Caramel::Widgets
   class Container < Widget
-    @widgets = Array(Widget).new
+    @custom_tags : Hash(String, Hash(String, String))
+    @rule_set = Caramel::Styles::RuleSet.new
+    @widgets = [] of Widget
 
-    getter widgets : Array(Widget)
+    getter custom_tags
+    getter rule_set
+    getter widgets
 
     def initialize(parent : Container, node : XML::Node)
       super
+      @custom_tags = parent.custom_tags.dup
       node.children.each do |n|
-        Caramel::Widgets.make(n.name, self, n) if n.element?
+        make(n.name, self, n) if n.element?
       end
     end
 
@@ -22,9 +28,23 @@ module Caramel::Widgets
       end
     end
 
+    def apply_styles(rule_sets : Array(Caramel::Styles::RuleSet))
+      rule_sets.push(rule_set)
+      super(rule_sets)
+      widgets.each { |w| w.apply_styles(rule_sets) }
+      rule_sets.pop
+    end
+
     def draw(wr : PDF::Writer)
       widgets.each { |w| w.draw(wr) }
       super
+    end
+
+    protected def make(tag : String, parent : Container, node : XML::Node)
+      if attrs = @custom_tags[tag]?
+        tag = attrs["tag"]? || tag
+      end
+      Caramel::Widgets.make(tag, parent, node)
     end
   end
 
