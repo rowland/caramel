@@ -9,9 +9,9 @@ module Caramel
     http_io_spec_css = "doc page h1 { padding: 15 };"
     WebMock.stub(:get, "http://www.example.com/io_spec.css").to_return(body: http_io_spec_css)
 
-    describe "#expand" do
+    describe "#expand_node" do
       it "should expand external styles" do
-        expand(doc, __DIR__, "styles", "src")
+        expand_node(doc, __DIR__, "styles", "src")
         nodes = doc.xpath_nodes("//styles")
         nodes[0].content.should eq(io_spec_css)
         nodes[1].content.should eq(http_io_spec_css)

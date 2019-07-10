@@ -30,7 +30,7 @@ module Caramel
     end
   end
 
-  def expand(node : XML::Node, base_uri : String, name : String, attr : String)
+  def expand_node(node : XML::Node, base_uri : String, name : String, attr : String)
     node.each(type: XML::Type::ELEMENT_NODE, name: name) { |node| expand_element(node, base_uri, attr) }
   end
 end
