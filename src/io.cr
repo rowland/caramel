@@ -1,8 +1,8 @@
 require "xml"
-require "./../xml"
+require "./xml"
 require "http/client"
 
-module Caramel::IO
+module Caramel
   extend self
 
   RE_HTTP_URI = /^https?:\/\//i

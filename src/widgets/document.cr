@@ -30,7 +30,7 @@ module Caramel::Widgets
           raise "Invalid document"
         end
       end
-      Caramel::IO.expand(node, File.dirname(@filename), "styles", "src")
+      Caramel.expand(node, File.dirname(@filename), "styles", "src")
       super(self, node)
       apply_styles
     end

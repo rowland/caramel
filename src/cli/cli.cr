@@ -34,7 +34,7 @@ end
 case format
 when "xml"
   doc = XML.parse(infile)
-  Caramel::IO.expand(doc, File.dirname(infilename), "styles", "src")
+  Caramel.expand(doc, File.dirname(infilename), "styles", "src")
   Caramel::Widgets::Document.new(doc)
   outfile << doc
 when "pdf"
