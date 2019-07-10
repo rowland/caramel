@@ -1,12 +1,11 @@
 require "xml"
 require "./factory"
-require "../styles"
 require "./widget"
 
 module Caramel::Widgets
   class Container < Widget
     @custom_tags : Hash(String, Hash(String, String))
-    @rule_set = Caramel::Styles::RuleSet.new
+    @rule_set = Caramel::RuleSet.new
     @widgets = [] of Widget
 
     getter custom_tags
@@ -28,7 +27,7 @@ module Caramel::Widgets
       end
     end
 
-    def apply_styles(rule_sets : Array(Caramel::Styles::RuleSet))
+    def apply_styles(rule_sets : Array(Caramel::RuleSet))
       rule_sets.push(rule_set)
       super(rule_sets)
       widgets.each { |w| w.apply_styles(rule_sets) }

@@ -1,7 +1,7 @@
 require "./spec_helper"
 
-module Caramel::Styles
-  describe Caramel::Styles do
+module Caramel
+  describe Caramel do
     context "selectors" do
       describe "#regex_string_for_selector" do
         it "should match tag" do

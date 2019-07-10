@@ -2,7 +2,7 @@ require "string_scanner"
 require "./rule"
 require "./selectors"
 
-module Caramel::Styles
+module Caramel
   class RuleSet < Array(Rule)
     def add_rules(text : String)
       rule_scanner = StringScanner.new(text)
@@ -13,7 +13,7 @@ module Caramel::Styles
         while attr_scanner.scan(Rule::RE_ATTRS)
           attrs[attr_scanner[1]] = attr_scanner[2]
         end
-        self << Rule.new(selector_text, Caramel::Styles.regex_for_selector(selector_text), attrs)
+        self << Rule.new(selector_text, Caramel.regex_for_selector(selector_text), attrs)
       end
     end
   end

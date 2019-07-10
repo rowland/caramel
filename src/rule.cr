@@ -1,4 +1,4 @@
-module Caramel::Styles
+module Caramel
   class Rule
     RE_RULE  = /\s*([^\{]+?)\s*\{([^\}]+)\}/
     RE_ATTRS = /\s*([^:]+)\s*:\s*([^;]+)\s*;?/

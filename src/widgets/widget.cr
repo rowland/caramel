@@ -17,7 +17,7 @@ module Caramel::Widgets
       parent << self
     end
 
-    def apply_styles(rule_sets : Array(Caramel::Styles::RuleSet))
+    def apply_styles(rule_sets : Array(Caramel::RuleSet))
       overrides = node.attributes.to_h
       if custom_attrs = custom_tags[node.name]?
         # custom_tag = custom_attrs["tag"]?

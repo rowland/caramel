@@ -1,5 +1,0 @@
-require "xml"
-require "./rule"
-require "./rule_set"
-require "./selectors"
-require "../xml"
