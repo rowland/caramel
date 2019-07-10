@@ -1,5 +1,6 @@
 require "xml"
 require "./factory"
+require "../rule_set"
 require "./widget"
 
 module Caramel::Widgets

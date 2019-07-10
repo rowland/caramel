@@ -1,9 +1,10 @@
 require "xml"
+require "./abstract_widget"
 require "./container"
 require "./factory"
 
 module Caramel::Widgets
-  class Styles
+  class Styles < AbstractWidget
     def initialize(parent : Container, node : XML::Node)
       text = String.build do |s|
         node.children.each do |n|

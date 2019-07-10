@@ -1,9 +1,10 @@
 require "xml"
+require "./abstract_widget"
 require "./container"
 require "./factory"
 
 module Caramel::Widgets
-  class CustomTag
+  class CustomTag < AbstractWidget
     def initialize(parent : Container, node : XML::Node)
       attrs = node.attributes.to_h
       if id = attrs.delete("id")
