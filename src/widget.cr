@@ -1,11 +1,11 @@
 require "pdf"
 require "xml"
 require "./abstract_widget"
-require "./container"
+# require "./container"
 require "./factory"
-require "../xml"
+require "./xml"
 
-module Caramel::Widgets
+module Caramel
   class Widget < AbstractWidget
     @attributes = {} of String => String
     @parent : Container | Nil

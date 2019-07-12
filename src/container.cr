@@ -1,9 +1,11 @@
 require "xml"
 require "./factory"
-require "../rule_set"
+require "./rule_set"
 require "./widget"
+require "./xml"
+require "./io"
 
-module Caramel::Widgets
+module Caramel
   class Container < Widget
     @custom_tags : Hash(String, Hash(String, String))
     @rule_set = Caramel::RuleSet.new
@@ -44,7 +46,7 @@ module Caramel::Widgets
       if attrs = @custom_tags[tag]?
         tag = attrs["tag"]? || tag
       end
-      Caramel::Widgets.make(tag, parent, node)
+      Caramel.make(tag, parent, node)
     end
   end
 

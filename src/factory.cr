@@ -3,7 +3,7 @@ require "./container"
 require "./widget"
 require "./styles"
 
-module Caramel::Widgets
+module Caramel
   alias WidgetMaker = Proc(Container, XML::Node, AbstractWidget)
 
   class Factory

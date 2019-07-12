@@ -1,7 +1,7 @@
 require "./container"
 require "./factory"
 
-module Caramel::Widgets
+module Caramel
   class Page < Container
     def draw(wr : PDF::Writer)
       wr.open_page

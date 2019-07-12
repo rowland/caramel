@@ -34,11 +34,11 @@ end
 case format
 when "xml"
   doc = XML.parse(infile)
-  Caramel.expand(doc, File.dirname(infilename), "styles", "src")
-  Caramel::Widgets::Document.new(doc)
+  Caramel.expand_node(doc, File.dirname(infilename), "styles", "src")
+  Caramel::Document.new(doc)
   outfile << doc
 when "pdf"
-  doc = Caramel::Widgets::Document.new(infile)
+  doc = Caramel::Document.new(infile)
   wr = PDF::Writer.new(outfilename)
   doc.draw(wr)
   outfile << wr if outfilename == ""

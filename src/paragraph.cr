@@ -3,7 +3,7 @@ require "./container"
 require "./factory"
 require "./widget"
 
-module Caramel::Widgets
+module Caramel
   class Paragraph < Widget
     def initialize(parent : Container, node : XML::Node)
       super

@@ -1,6 +1,6 @@
 require "./spec_helper"
 
-module Caramel::Widgets
+module Caramel
   describe Document do
     describe "#new" do
       doc = Document.new(File.join(__DIR__, "document_spec.crml"))

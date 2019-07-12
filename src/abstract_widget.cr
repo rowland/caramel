@@ -1,4 +1,4 @@
-module Caramel::Widgets
+module Caramel
   class AbstractWidget
   end
 end

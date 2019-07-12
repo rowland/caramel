@@ -1,9 +1,9 @@
 require "xml"
 require "./container"
-require "../io"
+require "./io"
 require "./page"
 
-module Caramel::Widgets
+module Caramel
   class Document < Container
     @custom_tags = {} of String => Hash(String, String)
     @filename = ""

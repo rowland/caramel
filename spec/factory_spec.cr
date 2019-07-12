@@ -1,10 +1,10 @@
 require "./spec_helper"
 
-module Caramel::Widgets
+module Caramel
   class Bar < Widget
   end
 
-  describe Caramel::Widgets do
+  describe Caramel do
     describe "#register" do
       it "should register a tag" do
         Factory.register("foo") { |parent, node| Widget.new(parent, node) }
