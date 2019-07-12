@@ -45,5 +45,5 @@ module Caramel
     end
   end
 
-  register("widget") { |parent, node| Widget.new(parent, node) }
+  Factory.register("widget") { |parent, node| Widget.new(parent, node) }
 end

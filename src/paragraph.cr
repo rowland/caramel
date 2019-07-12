@@ -16,5 +16,5 @@ module Caramel
     end
   end
 
-  register("p") { |parent, node| Paragraph.new(parent, node) }
+  Factory.register("p") { |parent, node| Paragraph.new(parent, node) }
 end

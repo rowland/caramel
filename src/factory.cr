@@ -1,7 +1,6 @@
 require "xml"
+require "./abstract_widget"
 require "./container"
-require "./widget"
-require "./styles"
 
 module Caramel
   alias WidgetMaker = Proc(Container, XML::Node, AbstractWidget)
@@ -27,15 +26,5 @@ module Caramel
     def self.tags : Array(String)
       @@registry.keys
     end
-  end
-
-  extend self
-
-  def register(tag : String, &block : WidgetMaker) : Nil
-    Factory.register(tag, &block)
-  end
-
-  def make(tag : String, parent : Container, node : XML::Node) : AbstractWidget
-    Factory.make(tag, parent, node)
   end
 end

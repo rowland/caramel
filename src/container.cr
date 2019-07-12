@@ -46,9 +46,9 @@ module Caramel
       if attrs = @custom_tags[tag]?
         tag = attrs["tag"]? || tag
       end
-      Caramel.make(tag, parent, node)
+      Factory.make(tag, parent, node)
     end
   end
 
-  register("div") { |parent, node| Container.new(parent, node) }
+  Factory.register("div") { |parent, node| Container.new(parent, node) }
 end

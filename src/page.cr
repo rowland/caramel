@@ -10,5 +10,5 @@ module Caramel
     end
   end
 
-  register("page") { |parent, node| Page.new(parent, node) }
+  Factory.register("page") { |parent, node| Page.new(parent, node) }
 end

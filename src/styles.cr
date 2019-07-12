@@ -17,5 +17,5 @@ module Caramel
     end
   end
 
-  register("styles") { |parent, node| Styles.new(parent, node) }
+  Factory.register("styles") { |parent, node| Styles.new(parent, node) }
 end
