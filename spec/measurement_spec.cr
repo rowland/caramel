@@ -1,43 +1,43 @@
 require "./spec_helper"
 require "../src/measurement"
 
-module Caramel
+module Caramel::Measurement
   context "measurement parsing and conversion" do
     describe "#parse_measurement" do
       it "should parse a simple number" do
-        parse_measurement("5").should eq 5
+        parse("5").should eq 5
       end
 
       it "should parse a fractional number" do
-        parse_measurement("5.7").should eq 5.7
+        parse("5.7").should eq 5.7
       end
 
       it "should parse a negative number" do
-        parse_measurement("-5").should eq -5
+        parse("-5").should eq -5
       end
 
       it "should parse a negative fractional number" do
-        parse_measurement("-5.7").should eq -5.7
+        parse("-5.7").should eq -5.7
       end
 
       it "should parse a simple number and units" do
-        parse_measurement("2in").should eq 144
+        parse("2in").should eq 144
       end
 
       it "should parse a fractional number and units" do
-        parse_measurement("1.5in").should eq 108
+        parse("1.5in").should eq 108
       end
 
       it "should parse a negative fractional number and units" do
-        parse_measurement("-1.5in").should eq -108
+        parse("-1.5in").should eq -108
       end
 
       it "should allow surrounding whitespace" do
-        parse_measurement(" -1.5in ").should eq -108
+        parse(" -1.5in ").should eq -108
       end
 
       it "should return zero for unmatched patterns" do
-        parse_measurement(" -1.5 in ").should eq 0
+        parse(" -1.5 in ").should eq 0
       end
     end
 
