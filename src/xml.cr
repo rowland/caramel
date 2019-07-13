@@ -1,3 +1,4 @@
+require "./attributes"
 require "xml"
 
 struct XML::Node
@@ -40,7 +41,7 @@ end
 
 struct XML::Attributes
   def to_h
-    self.reduce(Hash(String, String).new) { |m, attr| m[attr.name] = attr.text; m }
+    self.reduce(Caramel::Attributes.new) { |m, attr| m[attr.name] = attr.text; m }
   end
 
   def merge!(other : Hash)
