@@ -32,5 +32,20 @@ module Caramel
         ps.width.should eq 233
       end
     end
+
+    describe "#dup" do
+      it "changes to copy should leave original unchanged" do
+        ps = PageStyle.new("A4", "portrait")
+        ps.size.should eq "A4"
+        ps.orientation.should eq "portrait"
+
+        ps2 = ps.dup
+        ps2.size = "B5"
+        ps2.orientation = "landscape"
+
+        ps.size.should eq "A4"
+        ps.orientation.should eq "portrait"
+      end
+    end
   end
 end

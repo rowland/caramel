@@ -1,10 +1,9 @@
 require "xml"
-require "./container"
 require "./io"
 require "./page"
 
 module Caramel
-  class Document < Container
+  class Document < Page
     @custom_tags = {} of String => Hash(String, String)
     @filename = ""
     @pages = [] of Page
@@ -39,6 +38,7 @@ module Caramel
     end
 
     def <<(object)
+      return if object == self
       case object
       when Page
         pages << object
@@ -48,9 +48,37 @@ module Caramel
     end
 
     def draw(wr : PDF::Writer)
+      set_attributes
       wr.open
       pages.each { |p| p.draw(wr) }
       wr.close
+    end
+
+    def draw(io : IO) : Nil
+      wr = PDF::Writer.new
+      draw(wr)
+      wr.to_s(io)
+    end
+
+    def draw : String
+      wr = PDF::Writer.new
+      draw(wr)
+      wr.to_s
+    end
+
+    def page_style : PageStyle
+      @page_style ||= PageStyle.new(
+        attributes["size"]? || PDF::PS_DEFAULT,
+        attributes["orientation"]? || "portrait")
+    end
+
+    def set_attributes
+      super
+      pages.each { |p| p.set_attributes }
+    end
+
+    def units
+      @units ||= attributes["units"]? || "pt"
     end
   end
 

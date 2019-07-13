@@ -48,6 +48,11 @@ module Caramel
       end
       Factory.make(tag, parent, node)
     end
+
+    def set_attributes
+      super
+      widgets.each { |w| w.set_attributes }
+    end
   end
 
   Factory.register("div") { |parent, node| Container.new(parent, node) }
